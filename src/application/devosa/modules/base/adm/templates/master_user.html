@@ -1,0 +1,67 @@
+<script type="text/javascript">
+    var myClient = {
+        editData: function (idx) {
+            $('formMessage').style.visibility = 'hidden';
+            if (idx == 0) {
+                //reset data
+                $('dataLogin').value = "";
+                $('dataPwd').value = "";
+                $('dataName').value = "";
+                $('dataEmployee').value = "";
+                $('dataGroup').selectedIndex = -1;
+                $('dataCompany').selectedIndex = -1;
+                $('dataIdAdmModule').selectedIndex = -1;
+                $('dataID').value = "";
+                $('dataActive').checked = false;
+            }
+            else if (idx != '') {
+                $('dataLogin').value = $F("detailLogin" + idx);
+                $('dataPwd').value = "";
+                $('dataName').value = $F("detailName" + idx);
+                $('dataEmployee').value = $F("detailEmployee" + idx);
+                $('dataGroup').value = $F("detailGroup" + idx);
+                $('dataCompany').value = $F("detailCompany" + idx);
+                $('dataIdAdmModule').selectedIndex = -1;
+                $('dataIdAdmModule').value = $F("detailIdAdmModule" + idx);
+                $('dataID').value = $("detailID" + idx).value;
+                var aktif = $F("detailActive" + idx);
+                $('dataActive').checked = aktif == 't';
+            }
+            $('dataLogin').focus();
+            $('dataLogin').select();
+        },
+
+        confirmDelete: function () {
+            return confirm('Are you sure to delete this selected data?');
+        },
+
+        confirmSave: function () {
+            return confirm('Do you want to save this entry?');
+        }
+    }
+</script>
+[var.pageHeader]
+<div class="main-content">
+    <div class="row">
+        <div class="col-md-12">
+            [var.formInput;protect=no;htmlconv=no]
+        </div>
+        <div class="col-md-12">
+            <div class="panel">
+                <div class="panel-heading">
+                    <div class="panel-actions">
+                        <div class="pull-right" id="collapse-filter">
+                            <a href="#"
+                               data-toggle="collapse"
+                               data-target="#list-panel"><i class="fa fa-chevron-circle-down bigger-130"></i></a>
+                        </div>
+                    </div>
+                    <h3 class="panel-title">[var.strWordListofUser]</h3>
+                </div>
+                <div id="list-panel" class="panel-body collapse in">
+                    [var.DataGrid;protect=no;htmlconv=no]
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

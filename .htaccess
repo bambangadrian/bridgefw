@@ -1,0 +1,33 @@
+<IfModule mod_rewrite.c>
+    Options +FollowSymLinks -Indexes -MultiViews
+    DirectoryIndex public/index.php
+    RewriteEngine On
+    RewriteBase /
+    # Auto redirect application public/index.php as the boot file.
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ public/index.php/$1 [L,QSA]
+
+    # Prevent access to configuration files.
+
+    # Blocking offline browser and bad bots.
+    RewriteCond %{HTTP_USER_AGENT} ^FlashGet [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^Mass\ Downloader [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^NetSpider [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^Octopus [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^Offline\ Explorer [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^Offline\ Navigator [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^Teleport\ Pro [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^WebCopier [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^WebFetch [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^WebLeacher [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^WebReaper [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^WebZIP [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^Wget
+    RewriteRule ^.* - [F,L]
+</IfModule>
+
+<Files *.ini>
+    Order deny,allow
+    Deny from all
+</Files>

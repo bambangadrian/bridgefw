@@ -1,0 +1,136 @@
+<script type="text/javascript" src="../js/calendar.js"></script>
+<script type="text/javascript" src="../js/calendar-en.js"></script>
+<script type="text/javascript" src="../js/invosa.js"></script>
+<link href="../includes/datagrid/css/aqua.css" rel="stylesheet" type="text/css">
+<link href="../css/calendar.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+    <!--
+    // fungsi memeriksa validasi input
+    function validInput() {
+        if (document.formInput.dataDateFrom.value == "") {
+            alert("Empty Date!");
+            document.formInput.dataDateFrom.focus();
+            return false;
+        }
+        if (document.formInput.dataDateThru.value == "") {
+            alert("Empty Date!");
+            document.formInput.dataDateThru.focus();
+            return false;
+        }
+
+        if (dateCompare(document.formInput.dataDateFrom.value, document.formInput.dataDateThru.value) > 0) {
+            alert("Error : date from bigger than date thru");
+            return false;
+        }
+
+
+        return true;
+    } //validInput
+
+
+    // fungsi untuk inisialisasi
+    function initPage_() {
+        document.formInput.dataDateFrom.focus();
+        Calendar.setup({inputField: "dataDateFrom", button: "btnDateFrom"});
+        Calendar.setup({inputField: "dataDateThru", button: "btnDateThru"});
+
+    }//initPage
+    -->
+</script>
+[var.pageHeader]
+<div class="main-content">
+    <div class="row">
+        <div class="col-md-12">
+            [var.pageSubMenu]
+            <p></p>
+        </div>
+        <div class="col-md-12">
+            <div class="panel">
+                <div class="panel-heading">
+                    <div class="panel-actions">
+                        <div class="pull-right" id="collapse-filter">
+                            <a href="#"
+                               data-toggle="collapse"
+                               data-target="#input-panel"><i class="fa fa-chevron-circle-down bigger-130"></i></a>
+                        </div>
+                    </div>
+                    <h3 class="panel-title">FILTER REPORT</h3>
+                </div>
+                <div id="input-panel" class="panel-body collapse in">
+                    <form action=""
+                          method="post"
+                          name="formInput"
+                          id="formInput"
+                          onSubmit="return validInput();"
+                          class="form-horizontal"
+                          role="form">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label" for="dataType">[var.strWordsDateFrom]</label>
+
+                                <div class="col-sm-8">
+                                    <div class="input-group">
+                                        [var.strInputDateFrom]
+                      <span class="input-group-addon">
+                      	<i class="fa fa-calendar"></i>
+                      </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label" for="dataType">[var.strWordsDateTo]</label>
+
+                                <div class="col-sm-8">
+                                    <div class="input-group">
+                                        [var.strInputDateThru]
+                      <span class="input-group-addon">
+                      	<i class="fa fa-calendar"></i>
+                      </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 form-actions">
+                            <input class="btn btn-sm btn-primary"
+                                   name="btnShow"
+                                   type="submit"
+                                   id="btnShow"
+                                   value="[var.strWordsShowData]"
+                                   onClick="document.formInput.target='';">&nbsp;
+                            <input class="btn btn-sm btn-info"
+                                   name="btnPrint"
+                                   type="submit"
+                                   id="btnPrint"
+                                   value="[var.strWordsPrint]"
+                                   onClick="document.formInput.target='_blank';">
+                            <input class="btn btn-sm btn-info"
+                                   name="btnExcel"
+                                   id="btnExcel"
+                                   value="Excel"
+                                   type="submit"
+                                   onClick="document.formInput.target = ''">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="panel">
+                <div class="panel-heading">
+                    <div class="panel-actions">
+                        <div class="pull-right" id="collapse-filter">
+                            <a href="#"
+                               data-toggle="collapse"
+                               data-target="#list-panel"><i class="fa fa-chevron-circle-down bigger-130"></i></a>
+                        </div>
+                    </div>
+                    <h3 class="panel-title">[var.strWordsRECRUITMENTREPORT]</h3>
+                </div>
+                <div id="list-panel" class="panel-body collapse in">
+                    <h5>[var.strInfo]</h5>
+                    [var.strDataDetail]
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
